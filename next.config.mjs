@@ -2,8 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  distDir: 'dist',
-  output: 'export',
-}
+  images: {
+    loader: 'akamai',
+    path: '',
+  },
+  assetPrefix: './',
+};
 
-module.exports = nextConfig
+export default nextConfig;
