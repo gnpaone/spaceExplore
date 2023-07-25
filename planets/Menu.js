@@ -7,13 +7,14 @@ function Menu(props) {
   let setIsActive = props.setIsActive;
   let planets = props.planets;
   let currentPlanet = props.currentPlanet;
-  //let setCurrentPlanet = props.setCurrentPlanet;
+  let setCurrentPlanet = props.setCurrentPlanet;
 
   const navigateToPlanet = (planetName) => {
     const newUrl = `${window.location.pathname}?planet=${planetName}`;
     window.history.pushState({ planet: planetName }, planetName, newUrl);
 
     setIsActive(false);
+    setCurrentPlanet(planetName);
   };
 
   return (
