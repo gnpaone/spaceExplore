@@ -33,12 +33,9 @@ function Main() {
   const [loading, setLoading] = useState(0);
 
   const navigateToPlanet = (planetName) => {
-    // Construct the new URL with the query parameter 'planet'
     const newUrl = `${window.location.pathname}?planet=${planetName}`;
-    // Update the URL without triggering a full page refresh
     window.history.pushState({ planet: planetName }, planetName, newUrl);
-
-    // Update the current planet state
+    
     setCurrentPlanet(planetName);
   };
 
