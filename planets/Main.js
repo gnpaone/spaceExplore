@@ -6,7 +6,6 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import Image from 'next/image';
 import Menu from '../planets/Menu'
 import Loading from './Loading';
-import { useRouter } from 'next/router';
 
 // Links
 const portfolioLink = 'https://gnpaone.github.io';
@@ -32,20 +31,15 @@ function Main() {
   const [currentPlanet, setCurrentPlanet] = useState('earth');
   const [isActive, setIsActive] = useState(false);
   const [loading, setLoading] = useState(0);
-  const router = useRouter();
-
-  useEffect(() => {
-    // When the URL query parameter changes, update the current planet state
-    setCurrentPlanet(router.query.planet || 'earth');
-  }, [router.query.planet]);
 
   const navigateToPlanet = (planetName) => {
-    router.push({
-      pathname: '/spaceExplore/',
-      query: { planet: planetName },
-    },
-      `/spaceExplore/?planet=${planetName}`, // This is the "as" parameter with the trailing slash
-      { shallow: true });
+    // Construct the new URL with the query parameter 'planet'
+    const newUrl = `${window.location.pathname}?planet=${planetName}`;
+    // Update the URL without triggering a full page refresh
+    window.history.pushState({ planet: planetName }, planetName, newUrl);
+
+    // Update the current planet state
+    setCurrentPlanet(planetName);
   };
 
   const planetsArray = planets.map((planet) => planet.name);
