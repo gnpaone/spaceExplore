@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/router';
 
 function Menu(props) {
 
@@ -9,15 +8,12 @@ function Menu(props) {
   let planets = props.planets;
   let currentPlanet = props.currentPlanet;
   //let setCurrentPlanet = props.setCurrentPlanet;
-  const router = useRouter();
 
   const navigateToPlanet = (planetName) => {
-    router.push({
-      pathname: '/spaceExplore/',
-      query: { planet: planetName },
-    },
-      `/spaceExplore/?planet=${planetName}/`, // This is the "as" parameter with the trailing slash
-      { shallow: true });
+    const newUrl = `${window.location.pathname}?planet=${planetName}`;
+    window.history.pushState({ planet: planetName }, planetName, newUrl);
+
+    setIsActive(false);
   };
 
   return (
