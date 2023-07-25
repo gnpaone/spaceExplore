@@ -258,7 +258,7 @@ function Main() {
     <>
     <Loading load={loading} />
   
-    <Menu currentPlanet={currentPlanet} planets={planets} setIsActive={setIsActive} isActive={isActive} />
+    <Menu setCurrentPlanet={setCurrentPlanet} currentPlanet={currentPlanet} planets={planets} setIsActive={setIsActive} isActive={isActive} />
     
     <div className='relative z-20'>
           <div className='fixed w-full bg-white z-20 items-center justify-center hidden lg:flex'>
