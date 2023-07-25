@@ -41,7 +41,7 @@ function Main() {
 
   const navigateToPlanet = (planetName) => {
     router.push({
-      pathname: '/',
+      pathname: '/spaceExplore/',
       query: { planet: planetName },
     });
   };
@@ -140,7 +140,7 @@ function Main() {
         scene.add(earthCloudsScene);
 
         let saturnmodel;
-        new GLTFLoader().load('/saturn.glb', (gltf) => {
+        new GLTFLoader().load('/spaceExplore/saturn.glb', (gltf) => {
           gltf.scene.scale.set(0.12, 0.12, 0.12); 
           gltf.scene.position.set(1000, 0, 0); 
           const root = gltf.scene;
