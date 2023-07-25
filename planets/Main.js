@@ -43,7 +43,9 @@ function Main() {
     router.push({
       pathname: '/spaceExplore/',
       query: { planet: planetName },
-    });
+    },
+      `/spaceExplore/?planet=${planetName}`, // This is the "as" parameter with the trailing slash
+      { shallow: true });
   };
 
   const planetsArray = planets.map((planet) => planet.name);
