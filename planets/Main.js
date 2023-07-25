@@ -72,14 +72,38 @@ function Main() {
         pointLight.position.set(-100, 0, 0 )
         scene.add( pointLight );
         
-        // helpers
+        // gridlines
 
         // const lightHelper = new THREE.PointLightHelper(pointLight)
         
         // const grid = new THREE.GridHelper(10000, 100);
         // scene.add(lightHelper, grid)
 
-        // end helpers
+        const starGeo = new THREE.BufferGeometry();
+
+        const positions = new Float32Array(3000 * 3);
+        for (let i = 0; i < 3000; i++) {
+            let position = new THREE.Vector3 (
+                Math.random() * 600 - 300,
+                Math.random() * 600 - 300,
+                Math.random() * 600 - 300
+            );
+            positions[i * 3] = position.x;
+            positions[i * 3 + 1] = position.y;
+            positions[i * 3 + 2] = position.z;
+        }
+
+        starGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+        let sprite = new THREE.TextureLoader().load("star.png");
+        let starMaterial = new THREE.PointsMaterial({
+            color: 0xaaaaaa,
+            size: 0.3,
+            map: sprite
+        });
+
+        let stars = new THREE.Points(starGeo, starMaterial);
+        scene.add(stars);
         
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
