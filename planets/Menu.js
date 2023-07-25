@@ -13,9 +13,11 @@ function Menu(props) {
 
   const navigateToPlanet = (planetName) => {
     router.push({
-      pathname: '/',
+      pathname: '/spaceExplore/',
       query: { planet: planetName },
-    });
+    },
+      `/spaceExplore/?planet=${planetName}/`, // This is the "as" parameter with the trailing slash
+      { shallow: true });
   };
 
   return (
